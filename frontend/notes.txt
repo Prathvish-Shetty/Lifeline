@@ -1,0 +1,4 @@
+npm create vite@latest
+npm install
+
+tailwind css installation : https://tailwindcss.com/docs/installation/using-vite

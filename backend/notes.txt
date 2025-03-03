@@ -1,0 +1,50 @@
+npm init
+npm install express dotenv mongoose cookie-parser jsonwebtoken bcryptjs cors
+npm install -D nodemon
+
+"scripts": {
+  "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+}
+
+experimental feaure : load env variables directly when app starts
+"dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+so, import dotenv from dotenv (asynchronous) so add above snippet to package.json
+dotenv.config({path: './env'})
+
+dotenv is a Node.js package used to load environment variables from a .env file into process.env. 
+It helps keep sensitive information like API keys, database URLs, and other configuration settings out of the source code.
+
+The OS loads system-wide environment variables.
+process.env is a global object in Node.js that stores environment variables. 
+It allows access to system-wide and user-defined environment variables.
+
+dotenv loads variables from a .env file into process.env
+
+Express.js is a fast, minimal, and flexible web framework for Node.js that simplifies server-side development.
+cookie-parser is a middleware that parses cookies attached to client requests. It makes it easier to read and manipulate cookies in Express applications.
+
+CORS is a security feature in web browsers that restricts requests from different origins.
+The cors package allows servers to handle requests from different domains.
+
+app.use(cors()); // Enable CORS for all domains
+app.use(cors({
+  origin: "http://example.com", // Allow only this domain
+  credentials: true // Allow cookies & headers
+}));
+
+{ validateBeforeSave: false }, Mongoose skips schema validation and forces the document to be saved, even if required fields are missing.
+
+{
+    "email": "donor@example.com",
+    "password": "123456"
+}
+
+{
+    "email": "hospital@example.com",
+    "password": "hospitalpassword"
+}
+
+{
+    "email": "bloodbank@example.com",
+    "password": "bloodbankpassword"
+}
