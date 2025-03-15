@@ -8,8 +8,8 @@ router.route("/appointments").get(verifyJWT, isBloodBank, getBloodBankAppointmen
 
 router.route("/requests").get(verifyJWT, isBloodBank, getBloodRequestsForBank);
 
-router.route("/update-appointment-status").post(verifyJWT, isBloodBank, updateAppointmentStatus)
+router.route("/update-appointment-status").patch(verifyJWT, isBloodBank, updateAppointmentStatus)
 
-router.route("/update-request-status").post(verifyJWT, isBloodBank, updateBloodRequestStatus)
+router.route("/update-request-status").patch(verifyJWT, isBloodBank, updateBloodRequestStatus)
 
 export default router;

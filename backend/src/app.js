@@ -5,13 +5,13 @@ import cookieParser from 'cookie-parser'
 const app = express()
 
 // middlewares
+app.use(express.json()) // expect json
+app.use(cookieParser()) // parse cookies incomming requests
 app.use(cors({ // allow origin access
     origin: process.env.CORS_ORIGIN,
     credentials: true
 }))
-app.use(express.json()) // expect json
 app.use(express.static("public"))   // serve static files
-app.use(cookieParser()) // parse cookies incomming requests
 app.use(express.urlencoded({ extended: true }, { limit: "16kb" })) // parses incoming URL-encoded data (from HTML forms).
 
 // routes

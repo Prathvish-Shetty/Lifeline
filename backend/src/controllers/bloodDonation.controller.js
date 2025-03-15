@@ -3,9 +3,10 @@ import { User } from "../models/user.model.js";
 
 const bookAppointment = async (req, res) => {
     try {
-        const { bloodGroup, units, appointmentDate, bloodBankId } = req.body;
+        const { weight, bloodGroup, appointmentDate, bloodBankId } = req.body;
         const donorId = req.user._id; // Get logged-in donor ID
-
+        // console.log(req.user)
+        const units = weight >= 60 ? 450 : 350;
         // Check if blood bank exists
         const bloodBank = await User.findById(bloodBankId);
         if (!bloodBank || bloodBank.role !== "blood_bank") {

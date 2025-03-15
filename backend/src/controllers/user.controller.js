@@ -21,8 +21,8 @@ const generateAccessAndRefreshTokens = async (userId) => {
 
 const registerUser = async (req, res) => {
     try {
-        const { name, email, password, role, phone, address, city, state, dob, gender, bloodGroup, lastDonationDate, licenseNumber } = req.body;
-        if ([name, email, password, role, phone, address, city, state].some((field) => field?.trim() === "")) {
+        const { name, email, password, role, phone, address, district, state, dob, gender, bloodGroup, lastDonationDate, licenseNumber } = req.body;
+        if ([name, email, password, role, phone, address, district, state].some((field) => field?.trim() === "")) {
             return res.status(400).json({ message: "All fields are required" })
         }
         const existedUser = await User.findOne({ email })
@@ -30,7 +30,7 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ message: "User with username or email already exists" })
         }
         const user = await User.create({
-            name, email, password, role, phone, address, city, state
+            name, email, password, role, phone, address, district, state
         })
 
         // Handle Role-Specific Data
@@ -107,7 +107,8 @@ const loginUser = async (req, res) => {
     const options = {   // cookies can only be modified by server and not user
         httpOnly: true,  // Prevents JavaScript access
         secure: true,    // Only allows HTTPS
-        sameSite: "Strict" // Prevents CSRF attacks
+        sameSite: "Strict", // Prevents CSRF attacks
+        maxAge: 15 * 60 * 1000  // 15 mins for 
     }
 
     return res
@@ -213,7 +214,7 @@ const getCurrentUser = async (req, res) => {
 // Get all blood banks
 const getAllBloodBanks = async (req, res) => {
     try {
-        const bloodBanks = await User.find({ role: "blood_bank" }).select("name address phone");
+        const bloodBanks = await User.find({ role: "blood_bank" }).select("_id name address phone");
         return res.status(200).json({ success: true, data: bloodBanks });
     } catch (error) {
         return res.status(500).json({ message: `Error fetching blood banks: ${error.message}` });
@@ -223,7 +224,7 @@ const getAllBloodBanks = async (req, res) => {
 // Get all hospitals
 const getAllHospitals = async (req, res) => {
     try {
-        const hospitals = await User.find({ role: "hospital" }).select("name address phone");
+        const hospitals = await User.find({ role: "hospital" }).select("_id name address phone");
         return res.status(200).json({ success: true, data: hospitals });
     } catch (error) {
         return res.status(500).json({ message: `Error fetching hospitals: ${error.message}` });
@@ -233,7 +234,7 @@ const getAllHospitals = async (req, res) => {
 // Get all donors
 const getAllDonors = async (req, res) => {
     try {
-        const donors = await User.find({ role: "donor" }).select("name bloodGroup phone city state");
+        const donors = await User.find({ role: "donor" }).select("_id name bloodGroup phone district state");
         return res.status(200).json({ success: true, data: donors });
     } catch (error) {
         return res.status(500).json({ message: `Error fetching donors: ${error.message}` });
