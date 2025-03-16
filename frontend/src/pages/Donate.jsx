@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { getAllBloodbanks } from '../services/utilityService.js';
 import { bookAppointments } from '../services/donationService.js';
@@ -11,19 +11,19 @@ function Donate() {
   const [success, setSuccess] = useState(false)
   const [fail, setFail] = useState(false)
 
-  useEffect(() => {
-    const fetchBloodbanks = async () => {
-      try {
-        const bloodbanks = await getAllBloodbanks()
-        // console.log(bloodbanks.data)
-        setBloodBankList(bloodbanks.data.map(({ _id, name }) => ({ id: _id, name })));
-      } catch (error) {
-        console.error("Error fetching blood banks:", error);
-        setBloodBankList([])
-      }
+  const fetchBloodbanks = useCallback(async () => {
+    try {
+      const bloodbanks = await getAllBloodbanks()
+      // console.log(bloodbanks.data)
+      setBloodBankList(bloodbanks.data.map(({ _id, name }) => ({ id: _id, name })));
+    } catch (error) {
+      console.error("Error fetching blood banks:", error);
+      setBloodBankList([])
     }
-    fetchBloodbanks()
   }, [])
+  useEffect(() => {
+    fetchBloodbanks()
+  }, [fetchBloodbanks])
 
   const onSubmit = async (data) => {
     try {
@@ -58,11 +58,11 @@ function Donate() {
 
           <label className="fieldset-label">Enter your Weight</label>
           <input
-            type="tel"
+            type="number"
             {...register("weight", {
               required: "Weight is required",
               pattern: {
-                value: /^(4[0-9]|[5-6][0-9]{1,2}|699)$/, // Accepts 40-699 only
+                value: /^(4[0-9]|[1-3]\d{2}|(4[0-9]|[1-3]\d{2}),\d{1,2})$/, // Accepts 40-399 only
                 message: "Enter a valid weight (40-699 kg)"
               }
             })}
@@ -92,8 +92,8 @@ function Donate() {
 
           <button type="submit" className="btn btn-neutral mt-4">Book Appointment</button>
         </form>
-        {success && <Alert text="Appointment Booked successfully"/>}
-        {fail && <Alert text="Failed to book Appointment"/>}
+        {success && <Alert text="Appointment Booked successfully" />}
+        {fail && <Alert text="Failed to book Appointment" />}
       </div>
     </>
   )

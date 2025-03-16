@@ -6,7 +6,7 @@ const bloodRequestSchema = new Schema(
         bloodBankId: { type: Schema.Types.ObjectId, ref: "User", required: true }, // Blood bank providing blood
         bloodGroup: { type: String, required: true },
         unitsRequested: { type: Number, required: true },
-        status: { type: String, enum: ["pending", "approved", "rejected"], default: "pending" },
+        status: { type: String, enum: ["Pending", "Completed", "Rejected", "Confirmed"], default: "Pending" },
         requestDate: { type: Date, default: Date.now },
     },
     { timestamps: true }

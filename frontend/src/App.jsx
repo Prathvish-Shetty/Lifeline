@@ -8,10 +8,12 @@ import Donate from './pages/Donate.jsx'
 import Request from './pages/Request.jsx'
 import Contact from './pages/Contact.jsx'
 import About from './pages/About.jsx'
+import Profile from './pages/Profile.jsx'
 import React, { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { authAtom } from './store/authAtom';
 import { getUserProfile } from './services/dataService.js'
+import Dashboard from './pages/Dashboard.jsx'
 
 
 function App() {
@@ -20,14 +22,13 @@ function App() {
     const restoreAuthState = async () => {
       try {
         const profile = await getUserProfile();
-        console.log(profile.user)
+        // console.log(profile.user)
         setAuth({ user: profile.user, isAuthenticated: true });
       } catch (error) {
-        console.error("Failed to restore session:", error);
+        // console.error("Failed to restore session:", error);
         setAuth({ user: null, isAuthenticated: false });
       }
     };
-
     restoreAuthState();
   }, []);
 
@@ -42,6 +43,8 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/donate' element={<Donate />} />
           <Route path='/request' element={<Request />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/profile' element={<Profile />} />
         </Route>
       </Routes>
     </Router>

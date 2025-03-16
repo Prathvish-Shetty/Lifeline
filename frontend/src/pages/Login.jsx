@@ -1,28 +1,33 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useForm } from 'react-hook-form'
 import { loginUser } from '../services/authService';
 import { authAtom } from '../store/authAtom';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import Alert from '../components/Alert';
 
 
 function Login() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const setAuth = useSetRecoilState(authAtom)
   const navigate = useNavigate();
+  const [success, setSuccess] = useState(false)
+  const [fail, setFail] = useState(false)
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
+      // console.log(data);
       const response = await loginUser(data)
       setAuth({
         user: response.user,
         isAuthenticated: true
       })
+      setSuccess(true)
       reset()
       navigate('/');
     } catch (error) {
-      console.error("Login Failed:", error.message);
+      // console.error("Login Failed:", error.message);
+      setFail(true)
     }
   }
   return (
@@ -47,6 +52,8 @@ function Login() {
 
         <button type='submit' className="btn btn-neutral mt-4">Login</button>
       </form>
+      {success && <Alert text={"Login successfull"}/>}
+      {fail && <Alert text={"Login Unsuccessful"}/>}
     </div>
   )
 }

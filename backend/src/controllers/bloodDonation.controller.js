@@ -9,7 +9,7 @@ const bookAppointment = async (req, res) => {
         const units = weight >= 60 ? 450 : 350;
         // Check if blood bank exists
         const bloodBank = await User.findById(bloodBankId);
-        if (!bloodBank || bloodBank.role !== "blood_bank") {
+        if (!bloodBank || bloodBank.role !== "bloodBank") {
             return res.status(400).json({ message: "Invalid blood bank selected" });
         }
 

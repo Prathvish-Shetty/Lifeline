@@ -34,7 +34,7 @@ export const isHospital = (req, res, next) => {
 };
 
 export const isBloodBank = (req, res, next) => {
-    if (req.user.role !== "blood_bank") {
+    if (req.user.role !== "bloodBank") {
         return res.status(403).json({ message: "Access denied. Blood Banks only." });
     }
     next();

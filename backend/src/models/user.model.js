@@ -7,7 +7,7 @@ const userSchema = new Schema(
         name: { type: String, required: true },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
-        role: { type: String, enum: ["blood_bank", "hospital", "donor"], required: true },
+        role: { type: String, enum: ["bloodBank", "hospital", "donor"], required: true },
         phone: { type: String, required: true },
         address: { type: String, required: true },
         district: { type: String, required: true },

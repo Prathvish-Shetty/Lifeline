@@ -76,7 +76,7 @@ const updateBloodRequestStatus = async (req, res) => {
         const bloodBankId = req.user._id; // Logged-in blood bank admin
 
         // Validate status
-        if (!["approved", "rejected"].includes(status)) {
+        if (!["Confirmed", "Rejected", "Pending", "Completed"].includes(status)) {
             return res.status(400).json({ message: "Invalid status update" });
         }
 
@@ -91,23 +91,21 @@ const updateBloodRequestStatus = async (req, res) => {
             return res.status(403).json({ message: "Unauthorized to update this request" });
         }
 
-        // If approved, update inventory
-        if (status === "approved") {
+        bloodRequest.status = status
+        // If Completed, update inventory
+        if (status === "Completed") {
             try {
                 await updateBloodInventoryOnRequest(
                     bloodBankId, 
                     bloodRequest.bloodGroup, 
                     bloodRequest.unitsRequested
                 );
-                bloodRequest.status = "approved"; // Only update status if inventory update succeeds
             } catch (error) {
                 return res.status(400).json({ 
                     message: "Approval failed: Not enough blood units available",
                     error: error.message 
                 });
             }
-        } else {
-            bloodRequest.status = "rejected"; // If rejected, no inventory update needed
         }
 
         await bloodRequest.save();

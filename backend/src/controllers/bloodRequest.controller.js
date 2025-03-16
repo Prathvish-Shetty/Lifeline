@@ -8,7 +8,7 @@ const requestBlood = async (req, res) => {
 
         // Check if the selected blood bank exists and has the correct role
         const bloodBank = await User.findById(bloodBankId);
-        if (!bloodBank || bloodBank.role !== "blood_bank") {
+        if (!bloodBank || bloodBank.role !== "bloodBank") {
             return res.status(400).json({ message: "Invalid blood bank selected" });
         }
 
@@ -18,7 +18,7 @@ const requestBlood = async (req, res) => {
             bloodBankId,
             bloodGroup,
             unitsRequested,
-            status: "pending",
+            status: "Pending",
             requestDate
         });
 

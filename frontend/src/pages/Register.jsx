@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { stateDistrictData, bloodGroups } from '../constants.js';
 import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/authService.js';
+import Alert from '../components/Alert.jsx';
 
 
 function Register() {
   const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm();
   const navigate = useNavigate()
+  const [success, setSuccess] = useState(false)
+  const [fail, setFail] = useState(false)
 
   const selectedRole = watch("role"); // Watching the "role" field
   const selectedState = watch("state");
@@ -19,12 +22,16 @@ function Register() {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
+      // console.log(data);
       const response = await registerUser(data)
-      console.log("Registration Successful:", response);
+      // console.log("Registration Successful:", response);
+      setSuccess(true)
+      setTimeout(() => setSuccess(false), 2000);
       navigate('/login');
     } catch (error) {
-      console.error("Registration Failed:", error.message);
+      // console.error("Registration Failed:", error.message);
+      setFail(true)
+      setTimeout(() => setFail(false), 2000);
     }
   };
 
@@ -170,6 +177,8 @@ function Register() {
 
         <button type="submit" className="btn btn-neutral mt-4">Register</button>
       </form>
+      {success && <Alert text={"Registration successfull"}/>}
+      {fail && <Alert text={"Registration Unsuccessful"}/>}
     </div>
   )
 }

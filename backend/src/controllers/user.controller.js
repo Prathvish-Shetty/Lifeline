@@ -54,7 +54,7 @@ const registerUser = async (req, res) => {
                 hospitalId: user._id,
                 licenseNumber,
             });
-        } else if (role === "blood_bank") {
+        } else if (role === "bloodBank") {
             if (!licenseNumber) {
                 return res.status(400).json({ message: "Blood bank license number is required" });
             }
@@ -214,7 +214,7 @@ const getCurrentUser = async (req, res) => {
 // Get all blood banks
 const getAllBloodBanks = async (req, res) => {
     try {
-        const bloodBanks = await User.find({ role: "blood_bank" }).select("_id name address phone");
+        const bloodBanks = await User.find({ role: "bloodBank" }).select("_id name address phone");
         return res.status(200).json({ success: true, data: bloodBanks });
     } catch (error) {
         return res.status(500).json({ message: `Error fetching blood banks: ${error.message}` });

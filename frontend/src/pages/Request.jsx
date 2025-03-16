@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { getAllBloodbanks } from '../services/utilityService.js';
 import { bloodGroups } from '../constants.js';
@@ -11,23 +11,24 @@ function Request() {
     const [success, setSuccess] = useState(false)
     const [fail, setFail] = useState(false)
   
-    useEffect(() => {
-      const fetchBloodbanks = async () => {
-        try {
-          const bloodbanks = await getAllBloodbanks()
-          // console.log(bloodbanks.data)
-          setBloodBankList(bloodbanks.data.map(({ _id, name }) => ({ id: _id, name })));
-        } catch (error) {
-          console.error("Error fetching blood banks:", error);
-          setBloodBankList([])
-        }
+    const fetchBloodbanks = useCallback(async () => {
+      try {
+        const bloodbanks = await getAllBloodbanks()
+        // console.log(bloodbanks.data)
+        setBloodBankList(bloodbanks.data.map(({ _id, name }) => ({ id: _id, name })));
+      } catch (error) {
+        console.error("Error fetching blood banks:", error);
+        setBloodBankList([])
       }
-      fetchBloodbanks()
     }, [])
+
+    useEffect(() => {
+      fetchBloodbanks()
+    }, [fetchBloodbanks])
   
     const onSubmit = async (data) => {
       try {
-        console.log(data)
+        // console.log(data)
         await createRequest(data)
         setSuccess(true)
         setTimeout(() => setSuccess(false), 2000);
