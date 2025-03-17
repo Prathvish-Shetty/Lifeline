@@ -74,7 +74,7 @@ function Request() {
           {...register("unitsRequested", {
             required: "Blood Units is required",
             pattern: {
-              value: /^(3[5-9][0-9]|[4-9][0-9]{2}|10000)$/,
+              value: /^(3[5-9][0-9]|[4-9][0-9]{2}|[1-9][0-9]{3}|1[0-9]{4}|20000)$/, // 350 to 20000
               message: "Enter a valid value (350-10000 ml)"
             }
           })}

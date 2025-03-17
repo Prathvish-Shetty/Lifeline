@@ -62,7 +62,7 @@ function Donate() {
             {...register("weight", {
               required: "Weight is required",
               pattern: {
-                value: /^(4[0-9]|[1-3]\d{2}|(4[0-9]|[1-3]\d{2}),\d{1,2})$/, // Accepts 40-399 only
+                value: /^(4[0-9]|[5-9][0-9]|[1-4][0-9]{2}|500)$/, // Accepts 40-500 only
                 message: "Enter a valid weight (40-699 kg)"
               }
             })}
