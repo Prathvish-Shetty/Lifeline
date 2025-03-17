@@ -4,3 +4,6 @@ npm install
 tailwind css installation : https://tailwindcss.com/docs/installation/using-vite
 
 npm install recoil axios react-router-dom 
+
+local backend url http://localhost:8000/api
+local frontend url http://localhost:5173 for cors origin
