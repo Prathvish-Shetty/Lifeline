@@ -107,7 +107,7 @@ const loginUser = async (req, res) => {
     const options = {   // cookies can only be modified by server and not user
         httpOnly: true,  // Prevents JavaScript access
         secure: true,    // Only allows HTTPS
-        sameSite: "Strict", // Prevents CSRF attacks
+        sameSite: "None", // Prevents CSRF attacks
         maxAge: 30 * 60 * 1000  // 30 mins 
     }
 
@@ -138,7 +138,7 @@ const logoutUser = async (req, res) => {
     const options = {
         httpOnly: true,
         secure: true,
-        sameSite: "Strict"
+        sameSite: "None"
     }
     return res
         .status(200)
@@ -171,7 +171,7 @@ const refreshAccessToken = async (req, res) => {
         const options = {
             httpOnly: true,
             secure: true,
-            sameSite: "Strict"
+            sameSite: "None"
         }
 
         const { accessToken, newRefreshToken } = await generateAccessAndRefreshTokens(user._id)
