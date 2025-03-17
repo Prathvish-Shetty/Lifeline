@@ -7,3 +7,7 @@ npm install recoil axios react-router-dom
 
 local backend url http://localhost:8000/api
 local frontend url http://localhost:5173 for cors origin
+
+The 404 error on refresh in React apps (especially when using React Router) occurs because 
+React handles routing on the client side, but when you refresh, the browser tries to fetch the route directly from the server 
+— which doesn't exist on the server for static deployments.
