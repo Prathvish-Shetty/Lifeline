@@ -30,7 +30,7 @@ function Navbar() {
         user: null,
         isAuthenticated: false
       });
-      localStorage.removeItem("auth");  // Clears only auth data
+      // localStorage.removeItem("auth");  // Clears only auth data
       navigate('/login');
     } catch (error) {
       console.error("Logout Failed:", error.message);
