@@ -8,4 +8,16 @@ const API = axios.create({
   }
 });
 
+// Add a request interceptor to dynamically set Authorization header
+API.interceptors.request.use((config) => {
+  const authData = JSON.parse(localStorage.getItem("auth")); // Assuming token is stored in localStorage
+  if (authData?.accessToken) {
+    config.headers.Authorization = `Bearer ${authData.accessToken}`;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
+
 export default API
