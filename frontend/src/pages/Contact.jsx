@@ -7,7 +7,7 @@ function Contact() {
       <div className="hero-content flex-col lg:flex-row">
         <img
           src={logo}
-          className="max-w-md rounded-lg"
+          className="max-w-72 lg:max-w-md rounded-lg"
           alt="Blood Donation"
         />
         <div className="ml-10">

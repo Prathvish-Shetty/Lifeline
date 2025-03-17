@@ -7,7 +7,7 @@ function About() {
       <div className="hero-content flex-col lg:flex-row">
         <img
           src={about}
-          className="max-w-md rounded-lg"
+          className="max-w-60 lg:max-w-md rounded-lg"
           alt="About Lifeline"
         />
         <div className="ml-10">

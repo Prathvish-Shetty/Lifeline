@@ -77,7 +77,7 @@ function Dashboard() {
 
   return (
     <div className='h-auto flex flex-col gap-20 justify-around items-center py-10'>
-      <div className="overflow-x-auto flex flex-col items-center">
+      <div className="overflow-x-auto w-full flex flex-col items-center">
         <h2 className="text-2xl font-bold mb-4">Inventory</h2>
         <table className="table w-auto">
           <thead>
@@ -106,7 +106,7 @@ function Dashboard() {
           </tbody>
         </table>
       </div>
-      <div className="overflow-x-auto flex flex-col items-center">
+      <div className="overflow-x-auto max-w-full flex flex-col items-center">
         <h2 className="text-2xl font-bold mb-4">Appointments</h2>
         <table className="table w-auto">
           <thead>
@@ -150,7 +150,7 @@ function Dashboard() {
           </tbody>
         </table>
       </div>
-      <div className="overflow-x-auto flex flex-col items-center">
+      <div className="overflow-x-auto max-w-full flex flex-col items-center">
         <h2 className="text-2xl font-bold mb-4">Requests</h2>
         <table className="table w-auto">
           <thead>

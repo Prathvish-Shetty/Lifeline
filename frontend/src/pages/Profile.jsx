@@ -60,7 +60,7 @@ function Profile() {
       </div>
 
       {(donations && donations.length > 0) &&
-        <div className="card bg-base-200 w-fit p-6 shadow-sm m-auto my-10">
+        <div className="overflow-x-auto max-w-full card bg-base-200 w-fit p-6 shadow-sm m-auto my-10">
           <div className="overflow-x-auto flex flex-col items-center">
             <h2 className="text-2xl font-bold mb-4">Donations</h2>
             <table className="table w-auto">
@@ -91,7 +91,7 @@ function Profile() {
         </div>
       }
       {(requests && requests.length > 0) &&
-        <div className="card bg-base-200 w-fit p-6 shadow-sm m-auto my-10">
+        <div className="overflow-x-auto max-w-full card bg-base-200 w-fit p-6 shadow-sm m-auto my-10">
           <div className="overflow-x-auto flex flex-col items-center">
             <h2 className="text-2xl font-bold mb-4">Requests</h2>
             <table className="table w-auto">
