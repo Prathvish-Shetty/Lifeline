@@ -115,7 +115,7 @@ const loginUser = async (req, res) => {
         httpOnly: true,
         secure: true,     // ✅ Required for cookies in HTTPS
         sameSite: "None",  // ✅ Required for cross-origin cookies
-        domain: ".onrender.com", // ✅ Applies cookies to both frontend & backend on Render
+        // domain: ".onrender.com", // ✅ Applies cookies to both frontend & backend on Render
         path: "/",         // ✅ Ensures cookies apply to all routes
         maxAge: 30 * 60 * 1000  // ✅ 30 minutes
     };
@@ -153,7 +153,7 @@ const logoutUser = async (req, res) => {
         httpOnly: true,
         secure: true,     // ✅ Required for cookies in HTTPS
         sameSite: "None",  // ✅ Required for cross-origin cookies
-        domain: ".onrender.com", // ✅ Applies cookies to both frontend & backend on Render
+        // domain: ".onrender.com", // ✅ Applies cookies to both frontend & backend on Render
         path: "/",         // ✅ Ensures cookies apply to all routes
         maxAge: 30 * 60 * 1000  // ✅ 30 minutes
     };
@@ -196,7 +196,7 @@ const refreshAccessToken = async (req, res) => {
             httpOnly: true,
             secure: true,     // ✅ Required for cookies in HTTPS
             sameSite: "None",  // ✅ Required for cross-origin cookies
-            domain: ".onrender.com", // ✅ Applies cookies to both frontend & backend on Render
+            // domain: ".onrender.com", // ✅ Applies cookies to both frontend & backend on Render
             path: "/",         // ✅ Ensures cookies apply to all routes
             maxAge: 30 * 60 * 1000  // ✅ 30 minutes
         };
