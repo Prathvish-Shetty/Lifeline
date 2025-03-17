@@ -21,3 +21,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
 
 or change it in render
+
+frontend is deployed as static site on render
+backend is deployed as web service on render

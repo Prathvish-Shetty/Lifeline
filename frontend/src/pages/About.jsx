@@ -23,7 +23,7 @@ function About() {
             Blood banks can manage inventory and streamline requests with ease.
           </p>
 
-          <p className="mt-4 text-lg">
+          <div className="mt-4 text-lg">
             <span className="font-semibold">Why Choose Lifeline?</span>  
             <ul className="list-disc pl-5 mt-2">
               <li>🩸 Real-time blood inventory updates.</li>
@@ -31,7 +31,7 @@ function About() {
               <li>🏥 Fast-tracked blood requests for hospitals.</li>
               <li>🔒 Secure and reliable data management.</li>
             </ul>
-          </p>
+          </div>
         </div>
       </div>
     </div>
