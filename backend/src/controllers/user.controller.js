@@ -108,7 +108,7 @@ const loginUser = async (req, res) => {
         httpOnly: true,  // Prevents JavaScript access
         secure: true,    // Only allows HTTPS
         sameSite: "Strict", // Prevents CSRF attacks
-        maxAge: 15 * 60 * 1000  // 15 mins for 
+        maxAge: 30 * 60 * 1000  // 30 mins 
     }
 
     return res

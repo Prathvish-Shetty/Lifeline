@@ -21,9 +21,16 @@ function App() {
   useEffect(() => {
     const restoreAuthState = async () => {
       try {
+        const storedAuth = localStorage.getItem("auth");
+        if (storedAuth) {
+          setAuth(JSON.parse(storedAuth));
+          return;
+        }
         const profile = await getUserProfile();
+        const authData = { user: profile.user, isAuthenticated: true };
         // console.log(profile.user)
-        setAuth({ user: profile.user, isAuthenticated: true });
+        setAuth(authData);
+        localStorage.setItem("auth", JSON.stringify(authData));
       } catch (error) {
         // console.error("Failed to restore session:", error);
         setAuth({ user: null, isAuthenticated: false });
