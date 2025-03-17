@@ -104,13 +104,22 @@ const loginUser = async (req, res) => {
         "-password -refreshToken"
     )
 
-    const options = {   // cookies can only be modified by server and not user
-        httpOnly: true,  // Prevents JavaScript access
-        secure: true,    // Only allows HTTPS
-        sameSite: "None", // Prevents CSRF attacks
-        maxAge: 30 * 60 * 1000  // 30 mins 
-    }
+    // const options = {   // cookies can only be modified by server and not user
+    //     httpOnly: true,  // Prevents JavaScript access
+    //     secure: true,    // Only allows HTTPS
+    //     sameSite: "None", // Prevents CSRF attacks
+    //     maxAge: 30 * 60 * 1000  // 30 mins 
+    // }
 
+    const options = {
+        httpOnly: true,
+        secure: true,     // ✅ Required for cookies in HTTPS
+        sameSite: "None",  // ✅ Required for cross-origin cookies
+        domain: ".onrender.com", // ✅ Applies cookies to both frontend & backend on Render
+        path: "/",         // ✅ Ensures cookies apply to all routes
+        maxAge: 30 * 60 * 1000  // ✅ 30 minutes
+    };
+    
     return res
         .status(200)
         .cookie("accessToken", accessToken, options)
@@ -135,11 +144,20 @@ const logoutUser = async (req, res) => {
             new: true   // tell that this is a new response
         }
     )
+    // const options = {
+    //     httpOnly: true,
+    //     secure: true,
+    //     sameSite: "None"
+    // }
     const options = {
         httpOnly: true,
-        secure: true,
-        sameSite: "None"
-    }
+        secure: true,     // ✅ Required for cookies in HTTPS
+        sameSite: "None",  // ✅ Required for cross-origin cookies
+        domain: ".onrender.com", // ✅ Applies cookies to both frontend & backend on Render
+        path: "/",         // ✅ Ensures cookies apply to all routes
+        maxAge: 30 * 60 * 1000  // ✅ 30 minutes
+    };
+    
     return res
         .status(200)
         .clearCookie("accessToken", options)
@@ -168,11 +186,21 @@ const refreshAccessToken = async (req, res) => {
             return res.status(401).json({ message: "Refresh token is expired or used" })
         }
 
+        // const options = {
+        //     httpOnly: true,
+        //     secure: true,
+        //     sameSite: "None"
+        // }
+
         const options = {
             httpOnly: true,
-            secure: true,
-            sameSite: "None"
-        }
+            secure: true,     // ✅ Required for cookies in HTTPS
+            sameSite: "None",  // ✅ Required for cross-origin cookies
+            domain: ".onrender.com", // ✅ Applies cookies to both frontend & backend on Render
+            path: "/",         // ✅ Ensures cookies apply to all routes
+            maxAge: 30 * 60 * 1000  // ✅ 30 minutes
+        };
+        
 
         const { accessToken, newRefreshToken } = await generateAccessAndRefreshTokens(user._id)
 
