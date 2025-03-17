@@ -11,3 +11,13 @@ local frontend url http://localhost:5173 for cors origin
 The 404 error on refresh in React apps (especially when using React Router) occurs because 
 React handles routing on the client side, but when you refresh, the browser tries to fetch the route directly from the server 
 — which doesn't exist on the server for static deployments.
+
+use .htaccess file
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+or change it in render
