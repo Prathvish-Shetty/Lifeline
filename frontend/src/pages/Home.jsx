@@ -1,8 +1,11 @@
 import React from 'react'
 import home from '../assets/home.avif'
 import { Link } from 'react-router-dom'
+import { useRecoilValue } from 'recoil';
+import { authAtom } from '../store/authAtom';
 
 function Home() {
+    const auth = useRecoilValue(authAtom);
   return (
     <div
       className="hero min-h-screen"
@@ -22,9 +25,9 @@ function Home() {
           <p className="mb-5 text-lg">
             Save lives with streamlined donations, quick requests, and efficient blood bank management — all in one place.
           </p>
-          <Link to="/register">
+          {!auth.isAuthenticated && <Link to="/register">
             <button className="btn btn-primary">Get Started</button>
-          </Link>
+          </Link>}
         </div>
       </div>
     </div>
