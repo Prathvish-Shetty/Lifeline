@@ -97,6 +97,10 @@ Contributions are welcome! Feel free to fork the repository and submit pull requ
 If you have any questions, feel free to reach out:
 - **LinkedIn:** [Prathvish Shetty](https://www.linkedin.com/in/prathvish-shetty-24227a257)
 
+## License 📝  
+
+This project is **open-source** under the **MIT License**. 
+
 ---
 Developed by **Prathvish Shetty**
 
