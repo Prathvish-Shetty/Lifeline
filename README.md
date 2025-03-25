@@ -87,6 +87,9 @@ http://localhost:5173
 - Implement Notifications for Appointments & Requests
 - Improve UI with More Interactive Features
 
+## Special Thanks ❤️
+A huge thanks to DaisyUI for providing an amazing UI component library, making the design process smooth and efficient!
+
 ## 🤝 Contribution
 Contributions are welcome! Feel free to fork the repository and submit pull requests.
 

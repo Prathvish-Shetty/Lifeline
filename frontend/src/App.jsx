@@ -11,7 +11,7 @@ import About from './pages/About.jsx'
 import Profile from './pages/Profile.jsx'
 import React, { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { authAtom } from './store/authAtom';
+import { authAtom } from './store/authAtom.js';
 import { getUserProfile } from './services/dataService.js'
 import Dashboard from './pages/Dashboard.jsx'
 
