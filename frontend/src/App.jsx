@@ -14,6 +14,7 @@ import { useSetRecoilState } from 'recoil';
 import { authAtom } from './store/authAtom.js';
 import { getUserProfile } from './services/dataService.js'
 import Dashboard from './pages/Dashboard.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 
 function App() {
@@ -48,10 +49,12 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/donate' element={<Donate />} />
-          <Route path='/request' element={<Request />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route element={<ProtectedRoute/>}>
+            <Route path='/donate' element={<Donate />} />
+            <Route path='/request' element={<Request />} />
+            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/profile' element={<Profile />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
